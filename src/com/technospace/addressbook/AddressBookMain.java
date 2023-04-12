@@ -11,6 +11,11 @@ public class AddressBookMain {
 		
 		//Welcome Message for user
 		System.out.println("Welcome to Address Book Program");
+		
+		AddressBook addressbook=new AddressBook();
+		addressbook.addContacts();
+		addressbook.showContacts();
+			
 	}
 
 }
