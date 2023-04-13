@@ -35,6 +35,7 @@ public class AddressBookMain {
 				addressbook.UpdateContacts();
 			break;
 			case 4:
+				addressbook.DeleteContacts();
 			break;
 			default:
 				System.out.println("Invalid Choice");
