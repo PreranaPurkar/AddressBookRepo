@@ -1,4 +1,7 @@
 package com.technospace.addressbook;
+
+import java.util.Scanner;
+
 /***
  * 
  * @author Prerana Purkar
@@ -13,9 +16,31 @@ public class AddressBookMain {
 		System.out.println("Welcome to Address Book Program");
 		
 		AddressBook addressbook=new AddressBook();
-		addressbook.addContacts();
-		addressbook.showContacts();
-			
-	}
+		int choice;
+		Scanner sc=new Scanner(System.in);
+		do
+		{
+		System.out.println("******ADDRESSBOOK MENU******");
+		System.out.println("1.ADD CONTACT \n2.SHOW CONTACT \n3.UPDATE CONTACT \n4.DELETE CONTACT");
+		System.out.println("Enter the Choice");
+		choice=sc.nextInt();
+		switch(choice){
+			case 1:
+				addressbook.addContacts();
+			break;
+			case 2:
+				addressbook.showContacts();
+			break;
+			case 3:
+				addressbook.UpdateContacts();
+			break;
+			case 4:
+			break;
+			default:
+				System.out.println("Invalid Choice");
+			break;
+					}
+			}while(choice<5);
+		}
 
 }
