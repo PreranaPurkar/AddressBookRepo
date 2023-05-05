@@ -1,5 +1,6 @@
 package com.technospace.addressbook;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 /***
@@ -15,33 +16,45 @@ public class AddressBookMain {
 		//Welcome Message for user
 		System.out.println("Welcome to Address Book Program");
 		
-		AddressBook addressbook=new AddressBook();
+		Scanner sc = new Scanner(System.in);
 		int choice;
-		Scanner sc=new Scanner(System.in);
+		
+		HashMap<String,AddressBook> addressBookMap = new HashMap<String,AddressBook>();
 		do
 		{
-		System.out.println("******ADDRESSBOOK MENU******");
-		System.out.println("1.ADD CONTACT \n2.SHOW CONTACT \n3.UPDATE CONTACT \n4.DELETE CONTACT");
-		System.out.println("Enter the Choice");
-		choice=sc.nextInt();
-		switch(choice){
-			case 1:
-				addressbook.addContacts();
+			System.out.println("******** ADDRESSBOOK MENU ******** ");
+			System.out.println("1.CREATE NEW ADDRESSBOOK \n2.SHOW ADDRESSBOOK \n3.SELECT ADDRESSBOOK"
+			+"\n4.UPDATE ADDRESSBOOK \n5.DELETE ADDRESSBOOK");
+			
+			System.out.println("Enter the choice:");
+			 choice =sc.nextInt();
+		
+		switch (choice) {
+		case 1:
+			System.out.println("Enter the AddressBooK Name:");
+			String addressBookName = sc.next();
+			AddressBook addressBook=new AddressBook();
+			addressBookMap.put(addressBookName, addressBook);
+			
 			break;
-			case 2:
-				addressbook.showContacts();
+		case 2:
+			System.out.println(addressBookMap.keySet());
 			break;
-			case 3:
-				addressbook.UpdateContacts();
+		case 3:
+			System.out.println("Enter the AddressBook Name in which you want to add contact:");
+			String addressBookName2 = sc.next();
+			AddressBook myAddressBook = addressBookMap.get(addressBookName2);
+			AddressBookAPI addressBookAPI = new AddressBookAPI();
+			addressBookAPI.contactOperation(myAddressBook);
 			break;
-			case 4:
-				addressbook.DeleteContacts();
+		case 4:
 			break;
-			default:
-				System.out.println("Invalid Choice");
+		case 5:
 			break;
-					}
-			}while(choice<5);
+		
 		}
+		
+		}while(choice<5);
+	}
 
 }

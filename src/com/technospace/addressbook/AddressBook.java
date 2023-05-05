@@ -1,11 +1,19 @@
 package com.technospace.addressbook;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-	Contacts contacts=new Contacts();
+	
+	//Contacts[] contacts=new Contacts[5];
+	ArrayList<Contacts> contactList=new ArrayList<Contacts>();
+	//int i=0;
+	//contacts[0],contacts[1],contacts[2],contacts[3],contacts[4],contacts[5]
 	Scanner sc=new Scanner(System.in);
+	
 	public void addContacts(){
+		Contacts contacts = new Contacts();
+		//contacts[i]=new Contacts();
 		System.out.println("Enter the First Name:");
 		contacts.setFirstName(sc.next());
 		System.out.println("Enter the Last Name:");
@@ -22,12 +30,13 @@ public class AddressBook {
 		contacts.setZip(sc.next());
 		System.out.println("Enter the Email Id:");
 		contacts.setEmail(sc.next());
+		contactList.add(contacts);
+		//i++;
 	}
 	public void showContacts(){
-		if(contacts == null){
-			System.out.println("Contact object is not available");
-		}
-		else{
+		
+			for(int j=0;j<contactList.size();j++){
+				Contacts contacts = contactList.get(j);
 			System.out.println("First Name:"+contacts.getFirstName());
 			System.out.println("Last NAme:"+contacts.getLastName());
 			System.out.println("Address:"+contacts.getAddress());
@@ -38,14 +47,14 @@ public class AddressBook {
 			System.out.println("EMail Id:"+contacts.getEmail());
 			}
 		}
+	
 	public void UpdateContacts(){
-		
-		if (contacts == null){
-			System.out.println("Contact object is not Available");
-		}
-		else{
+			
 			System.out.println("Enter the First name to update contact:");
 			String fname=sc.next();
+			for(int i=0;i<contactList.size();i++){
+				Contacts contacts = contactList.get(i);
+			
 			if(fname.equals(contacts.getFirstName())){
 				System.out.println("Contact is Available");
 				System.out.println("Enter the Last Name:");
@@ -63,17 +72,18 @@ public class AddressBook {
 				System.out.println("Enter the Email Id:");
 				contacts.setEmail(sc.next());
 			}
-			else{
-			System.out.println("contact is not Available");
-				}
-			}
+			contactList.add(contacts);
+		}
 	}
-	public void DeleteContacts(){
+		public void DeleteContacts(){
 		System.out.println("Enter the First name to Delete Contact:");
 		String fname = sc.next();
+		for(int i=0;i<contactList.size();i++){
+			Contacts contacts=contactList.get(i);
+		
 		if(fname.equals(contacts.getFirstName())){
 			System.out.println("Contact is Available");
-			contacts = null;
+			contactList.remove(contacts);
 			System.out.println("Contact is Deleted");
 		}
 		else{
@@ -81,7 +91,7 @@ public class AddressBook {
 		}
 		
 	}
-
+		}
 	
 	
 
